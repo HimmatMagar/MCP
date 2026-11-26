@@ -5,6 +5,7 @@ __pycache__/
 
 # C extensions
 *.so
+expenses.db
 
 # Distribution / packaging
 .Python
