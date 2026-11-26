@@ -18,7 +18,7 @@ def server_info() -> str:
         "Descriptions": "A small and simple remote mcp server",
         "tools": ["generate_random_num"]
     }
-    return json.dump(info, indent=2)
+    return json.dump(info)
 
 
 if __name__ == "__main__":
