@@ -5,6 +5,7 @@ from fastmcp import FastMCP
 mcp = FastMCP(name="Expense Tracker")
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "expenses.db")
+CATEGORIES_PATH = os.path.join(os.path.dirname(__file__), "categories.json")
 
 def _init_db():
     with sqlite3.connect(DB_PATH) as c:
@@ -86,6 +87,11 @@ def summarize_by_category(start_date: str, end_date: str):
         "categories": categories,
     }
 
+@mcp.resource("expense://categories", mime_type="application/json")
+def categories():
+    # Read fresh each time so you can edit the file without restarting
+    with open(CATEGORIES_PATH, "r", encoding="utf-8") as f:
+        return f.read()
 
 if __name__ == "__main__":
     mcp.run()
